@@ -2,11 +2,14 @@
 
 'use client'
 
+import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function AddPost() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const router = useRouter()
  
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -18,6 +21,7 @@ export default function AddPost() {
               'Content-Type': 'application/json'
           },
           body: JSON.stringify({title, content}) })
+          router.refresh()
       } catch (err) {
           console.error(err)
       }
@@ -28,6 +32,7 @@ export default function AddPost() {
 
     return (
         <main className="flex justify-center items-center min-h-screen bg-gray-50">
+            <Link href={'/'} >Home</Link>
             <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg border border-gray-200">
                 <h1 className="text-2xl font-bold text-center text-gray-800">Add New Post</h1>
                 
