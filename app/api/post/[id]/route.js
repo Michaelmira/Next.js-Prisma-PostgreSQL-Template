@@ -8,5 +8,6 @@ export async function DELETE(request, {params}) {
         where: {id}
     })
     
+    
     return NextResponse.json(request)
 }
