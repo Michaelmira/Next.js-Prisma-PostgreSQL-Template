@@ -4,6 +4,9 @@ import Post from "./componets/post";
 import Link from "next/link";
 
 async function getPosts() {
+  if (process.env.NEXT_PHASE === "phase-production-build") {
+    return [];
+  }
   const posts = await prisma.post.findMany({
     where: { published: true },
     include: {
